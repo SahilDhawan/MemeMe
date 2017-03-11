@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -21,50 +22,79 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Dmq-qD-7VW">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="20"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="L9k-l8-48X">
                                 <rect key="frame" x="0.0" y="623" width="375" height="44"/>
                                 <items>
-                                    <barButtonItem systemItem="camera" id="i9U-K4-5hA">
+                                    <barButtonItem systemItem="action" id="i9U-K4-5hA">
                                         <connections>
-                                            <action selector="cameraPressed:" destination="BYZ-38-t0r" id="g9W-md-m2M"/>
+                                            <action selector="imagePickerPressed:" destination="BYZ-38-t0r" id="OeF-gL-XlM"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem width="42" style="plain" systemItem="fixedSpace" id="N51-bY-EsJ"/>
+                                    <barButtonItem systemItem="camera" id="SSz-lh-d3P">
+                                        <connections>
+                                            <action selector="cameraButtonPressed:" destination="BYZ-38-t0r" id="89i-w0-Qzs"/>
                                         </connections>
                                     </barButtonItem>
                                 </items>
                             </toolbar>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="3wC-ci-7DR">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="623"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3wC-ci-7DR">
+                                <rect key="frame" x="0.0" y="20" width="375" height="603"/>
                             </imageView>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="TOP" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="vUF-oJ-aUF">
-                                <rect key="frame" x="162" y="70" width="51" height="30"/>
-                                <nil key="textColor"/>
-                                <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="15"/>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" usesAttributedText="YES" allowsEditingTextAttributes="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="vUF-oJ-aUF">
+                                <rect key="frame" x="26" y="70" width="323" height="25"/>
+                                <attributedString key="attributedText">
+                                    <fragment content="TOP">
+                                        <attributes>
+                                            <font key="NSFont" size="20" name="AmericanTypewriter-Bold"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                        </attributes>
+                                    </fragment>
+                                </attributedString>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters" keyboardAppearance="alert"/>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="BOTTOM" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bbI-Ox-nbd">
-                                <rect key="frame" x="147" y="543" width="81" height="30"/>
-                                <nil key="textColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" usesAttributedText="YES" allowsEditingTextAttributes="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bbI-Ox-nbd">
+                                <rect key="frame" x="26" y="548" width="323" height="25"/>
+                                <attributedString key="attributedText">
+                                    <fragment content="BOTTOM">
+                                        <attributes>
+                                            <font key="NSFont" size="20" name="AmericanTypewriter-Bold"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                        </attributes>
+                                    </fragment>
+                                </attributedString>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters" keyboardAppearance="alert"/>
                             </textField>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="Dmq-qD-7VW" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="BfL-71-VlT"/>
+                            <constraint firstAttribute="trailing" secondItem="Dmq-qD-7VW" secondAttribute="trailing" id="CWg-FK-hxh"/>
                             <constraint firstItem="L9k-l8-48X" firstAttribute="top" secondItem="bbI-Ox-nbd" secondAttribute="bottom" constant="50" id="Ghe-VB-cJV"/>
+                            <constraint firstItem="3wC-ci-7DR" firstAttribute="top" secondItem="Dmq-qD-7VW" secondAttribute="bottom" id="LSQ-lb-ehK"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="L9k-l8-48X" secondAttribute="bottom" id="P1F-Oq-OfZ"/>
                             <constraint firstItem="L9k-l8-48X" firstAttribute="top" secondItem="3wC-ci-7DR" secondAttribute="bottom" id="QPo-WH-wuA"/>
                             <constraint firstItem="3wC-ci-7DR" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="Tav-xK-TCU"/>
-                            <constraint firstItem="bbI-Ox-nbd" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="X3H-OV-EjF"/>
-                            <constraint firstItem="vUF-oJ-aUF" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="XnP-pJ-PCE"/>
+                            <constraint firstItem="vUF-oJ-aUF" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="10" id="VKW-8s-GtI"/>
+                            <constraint firstItem="Dmq-qD-7VW" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="aII-kb-VeK"/>
+                            <constraint firstItem="bbI-Ox-nbd" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="10" id="aiX-52-pHj"/>
                             <constraint firstAttribute="trailing" secondItem="3wC-ci-7DR" secondAttribute="trailing" id="hzc-nY-gpd"/>
                             <constraint firstItem="vUF-oJ-aUF" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="50" id="m4i-Nj-PTf"/>
                             <constraint firstAttribute="trailing" secondItem="L9k-l8-48X" secondAttribute="trailing" id="naL-yu-0xR"/>
-                            <constraint firstItem="3wC-ci-7DR" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="uub-dU-KFt"/>
                             <constraint firstItem="L9k-l8-48X" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="wbK-43-Olp"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="bbI-Ox-nbd" secondAttribute="trailing" constant="10" id="xnV-OJ-4CU"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="vUF-oJ-aUF" secondAttribute="trailing" constant="10" id="zjA-On-9Tb"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="bottomTextField" destination="bbI-Ox-nbd" id="J00-Ik-B6N"/>
+                        <outlet property="cameraButton" destination="SSz-lh-d3P" id="NK2-ym-1T7"/>
                         <outlet property="imageView" destination="3wC-ci-7DR" id="kDE-ux-fDq"/>
+                        <outlet property="statusView" destination="Dmq-qD-7VW" id="71z-CS-OdQ"/>
                         <outlet property="topTextField" destination="vUF-oJ-aUF" id="MRH-Ps-ZoK"/>
                     </connections>
                 </viewController>
