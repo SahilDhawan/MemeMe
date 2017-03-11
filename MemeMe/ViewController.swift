@@ -9,7 +9,6 @@
 import UIKit
 
 class ViewController: UIViewController {
-    
     @IBOutlet weak var topTextField: UITextField!
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var bottomTextField: UITextField!
@@ -18,6 +17,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var shareButton: UIBarButtonItem!
     @IBOutlet weak var toolbar: UIToolbar!
     @IBOutlet weak var navigationBar: UINavigationBar!
+    var flag : Bool = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,11 +29,8 @@ class ViewController: UIViewController {
         statusView.translatesAutoresizingMaskIntoConstraints = false
         let heightContraint = UIApplication.shared.statusBarFrame.height
         statusView.heightAnchor.constraint(equalToConstant: heightContraint).isActive = true
-        
-        
         //disabling camera button
         cameraButton.isEnabled = UIImagePickerController.isSourceTypeAvailable(.camera)
-        
         
         let memeTextAttributes : [String: Any] = [
             NSStrokeColorAttributeName : UIColor.black,
@@ -73,14 +70,21 @@ class ViewController: UIViewController {
     }
     func keyboardWillHide(_ notification:Notification)
     {
-        self.view.frame.origin.y += getKeyboardHeight(notification)
+        if flag == true
+        {
+            self.view.frame.origin.y += getKeyboardHeight(notification)
+        }
     }
     func keyboardWillShow(_ notification:Notification)
     {
-        self.view.frame.origin.y -= getKeyboardHeight(notification)
+        if flag == true
+        {
+            self.view.frame.origin.y -= getKeyboardHeight(notification)
+        }
         
     }
     override func viewWillDisappear(_ animated: Bool) {
+        
         super.viewWillDisappear(animated)
         unsubscribeToKeyboardNotifications()
     }
@@ -138,6 +142,14 @@ extension ViewController:UITextFieldDelegate
 {
     func textFieldDidBeginEditing(_ textField: UITextField) {
         textField.text = ""
+        if topTextField.isEditing == true
+        {
+            flag = false
+        }
+        else
+        {
+            flag = true
+        }
     }
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
