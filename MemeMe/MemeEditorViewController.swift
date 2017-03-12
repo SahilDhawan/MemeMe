@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  MemeEditorViewController.swift
 //  MemeMe
 //
 //  Created by Sahil Dhawan on 24/02/17.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class MemeEditorViewController: UIViewController {
     @IBOutlet weak var topTextField: UITextField!
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var bottomTextField: UITextField!
@@ -37,8 +37,8 @@ class ViewController: UIViewController {
             NSFontAttributeName: UIFont(name: "HelveticaNeue-CondensedBlack", size: 40)!,
             NSStrokeWidthAttributeName : -5.0]
         
-        configure(topTextField, "TOP", memeTextAttributes, .center)
-        configure(bottomTextField,"BOTTOM",memeTextAttributes,.center)
+        configure(topTextField, "TOP", memeTextAttributes)
+        configure(bottomTextField,"BOTTOM",memeTextAttributes)
     }
     @IBAction func imagePickerPressed(_ sender: Any) {
         present(imagePickerGenerator(.photoLibrary), animated: true, completion: nil)
@@ -68,7 +68,7 @@ class ViewController: UIViewController {
     {
         if bottomTextField.isFirstResponder
         {
-            self.view.frame.origin.y -= getKeyboardHeight(notification)
+            self.view.frame.origin.y = getKeyboardHeight(notification) * -1
         }
         
     }
@@ -100,12 +100,12 @@ class ViewController: UIViewController {
         return memedImage
     }
     @IBAction func shareButtonPressed(_ sender: Any) {
-        let meme = Meme.init(topText: topTextField.text!, bottomText: bottomTextField.text!, image: imageView.image, memedImage: generateMemedImage())
-        let controller = UIActivityViewController.init(activityItems: [meme.memedImage], applicationActivities:nil)
+        let memedImage = generateMemedImage()
+        let controller = UIActivityViewController.init(activityItems: [memedImage], applicationActivities:nil)
         controller.completionWithItemsHandler = {
             (_, successful, _, _) in
             if successful{
-                self.save()
+                self.save(memedImage)
             }
         }
         self.present(controller, animated: true, completion: nil)
@@ -115,11 +115,11 @@ class ViewController: UIViewController {
         self.bottomTextField.text = "BOTTOM"
         self.imageView.image = nil
     }
-    func configure(_ textField : UITextField, _ text : String , _ attributes : [String:Any], _  alignment: NSTextAlignment)
+    func configure(_ textField : UITextField, _ text : String , _ attributes : [String:Any])
     {
         textField.text = text
         textField.defaultTextAttributes = attributes
-        textField.textAlignment = alignment
+        textField.textAlignment = .center
     }
     func imagePickerGenerator(_ sourceType : UIImagePickerControllerSourceType)-> UIImagePickerController
     {
@@ -129,12 +129,12 @@ class ViewController: UIViewController {
         shareButton.isEnabled = true
         return imagePicker
     }
-    func save()
+    func save(_ memedImage:UIImage)
     {
-        let meme = Meme.init(topText: topTextField.text!, bottomText: bottomTextField.text!, image: imageView.image, memedImage: generateMemedImage())
+        let meme = Meme.init(topText: topTextField.text!, bottomText: bottomTextField.text!, image: imageView.image, memedImage: memedImage)
     }
 }
-extension ViewController:UIImagePickerControllerDelegate,UINavigationControllerDelegate
+extension MemeEditorViewController:UIImagePickerControllerDelegate,UINavigationControllerDelegate
 {
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         self.dismiss(animated: true, completion: nil)
@@ -151,20 +151,16 @@ extension ViewController:UIImagePickerControllerDelegate,UINavigationControllerD
     }
     
 }
-extension ViewController:UITextFieldDelegate
+extension MemeEditorViewController:UITextFieldDelegate
 {
     func textFieldDidBeginEditing(_ textField: UITextField) {
-        textField.text = ""
+        if textField.text == "TOP" || textField.text == "BOTTOM"
+        {
+            textField.text = ""
+        }
     }
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true
     }
-}
-struct Meme
-{
-    var topText : String!
-    var bottomText : String!
-    var image : UIImage!
-    var memedImage : UIImage!
 }
