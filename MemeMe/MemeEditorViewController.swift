@@ -12,11 +12,10 @@ class MemeEditorViewController: UIViewController {
     @IBOutlet weak var topTextField: UITextField!
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var bottomTextField: UITextField!
-    @IBOutlet weak var statusView: UIView!
     @IBOutlet weak var cameraButton: UIBarButtonItem!
     @IBOutlet weak var shareButton: UIBarButtonItem!
     @IBOutlet weak var toolbar: UIToolbar!
-    @IBOutlet weak var navigationBar: UINavigationBar!
+  
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,9 +24,7 @@ class MemeEditorViewController: UIViewController {
         topTextField.delegate = self
         bottomTextField.delegate = self
         //Specifying the height of status View
-        statusView.translatesAutoresizingMaskIntoConstraints = false
-        let heightContraint = UIApplication.shared.statusBarFrame.height
-        statusView.heightAnchor.constraint(equalToConstant: heightContraint).isActive = true
+       
         //disabling camera button
         cameraButton.isEnabled = UIImagePickerController.isSourceTypeAvailable(.camera)
         
@@ -90,12 +87,13 @@ class MemeEditorViewController: UIViewController {
     }
     func generateMemedImage()->UIImage
     {
-        self.navigationBar.isHidden = true
+        
+        navigationController?.navigationBar.isHidden = true
         self.toolbar.isHidden = true
         UIGraphicsBeginImageContext(self.view.frame.size)
         view.drawHierarchy(in: self.view.frame, afterScreenUpdates: true)
         let memedImage : UIImage!  = UIGraphicsGetImageFromCurrentImageContext()
-        self.navigationBar.isHidden = false
+        navigationController?.navigationBar.isHidden = false
         self.toolbar.isHidden = false
         return memedImage
     }
@@ -109,11 +107,13 @@ class MemeEditorViewController: UIViewController {
             }
         }
         self.present(controller, animated: true, completion: nil)
+
     }
     @IBAction func cancelButtonPressed(_ sender: Any) {
         self.topTextField.text = "TOP"
         self.bottomTextField.text = "BOTTOM"
         self.imageView.image = nil
+
     }
     func configure(_ textField : UITextField, _ text : String , _ attributes : [String:Any])
     {
@@ -132,6 +132,9 @@ class MemeEditorViewController: UIViewController {
     func save(_ memedImage:UIImage)
     {
         let meme = Meme.init(topText: topTextField.text!, bottomText: bottomTextField.text!, image: imageView.image, memedImage: memedImage)
+        let objectDelegate = UIApplication.shared.delegate
+        let appDelegate = objectDelegate as! AppDelegate
+        appDelegate.memes.append(meme)
     }
 }
 extension MemeEditorViewController:UIImagePickerControllerDelegate,UINavigationControllerDelegate
