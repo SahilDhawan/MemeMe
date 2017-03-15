@@ -47,9 +47,7 @@ extension MemeTableViewController : UITableViewDelegate
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let meme = memes[indexPath.row]
         let memeController = storyboard?.instantiateViewController(withIdentifier: "MemeEditor") as! MemeEditorViewController
-        memeController.imageView.image = meme.image
-        memeController.bottomTextField.text = meme.bottomText
-        memeController.topTextField.text = meme.topText
+        memeController.meme = meme
         self.navigationController?.pushViewController(memeController, animated: true)
     }
 }

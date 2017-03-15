@@ -37,11 +37,7 @@ extension MemeCollectionViewController:UICollectionViewDelegate
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let meme = memes[indexPath.row]
         let memeController = storyboard?.instantiateViewController(withIdentifier: "MemeEditor") as! MemeEditorViewController
-        showAlert(meme.topText)
-        showAlert("\(indexPath.row)")
-        memeController.imageView.image = meme.image
-        memeController.bottomTextField.text = meme.bottomText
-        memeController.topTextField.text = meme.topText
+        memeController.meme = meme
         self.navigationController?.pushViewController(memeController, animated: true)
     }
 }
@@ -53,7 +49,6 @@ extension MemeCollectionViewController:UICollectionViewDataSource
     }
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let memeCollectionCell = collectionView.dequeueReusableCell(withReuseIdentifier: "MemeCollectionCell", for: indexPath) as! MemeCollectionViewCell
-        showAlert("\(indexPath.row)")
         let meme = memes[indexPath.row]
         memeCollectionCell.label.text = meme.topText + " " + meme.bottomText
         memeCollectionCell.imageView.image = meme.memedImage

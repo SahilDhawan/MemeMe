@@ -16,6 +16,7 @@ class MemeEditorViewController: UIViewController {
     @IBOutlet weak var shareButton: UIBarButtonItem!
     @IBOutlet weak var toolbar: UIToolbar!
     
+    var meme:Meme!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -49,6 +50,12 @@ class MemeEditorViewController: UIViewController {
         super.viewWillAppear(animated)
         subscribeToKeyboardNotifications()
         self.tabBarController?.tabBar.isHidden = true
+        if meme != nil
+        {
+            imageView.image = meme.image
+            topTextField.text = meme.topText
+            bottomTextField.text = meme.bottomText
+        }
     }
     //MARK: AdjustingViewAccordingToKeyboard
     func subscribeToKeyboardNotifications()
