@@ -15,7 +15,7 @@ class MemeEditorViewController: UIViewController {
     @IBOutlet weak var cameraButton: UIBarButtonItem!
     @IBOutlet weak var shareButton: UIBarButtonItem!
     @IBOutlet weak var toolbar: UIToolbar!
-  
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,7 +24,7 @@ class MemeEditorViewController: UIViewController {
         topTextField.delegate = self
         bottomTextField.delegate = self
         //Specifying the height of status View
-       
+        
         //disabling camera button
         cameraButton.isEnabled = UIImagePickerController.isSourceTypeAvailable(.camera)
         
@@ -36,6 +36,7 @@ class MemeEditorViewController: UIViewController {
         
         configure(topTextField, "TOP", memeTextAttributes)
         configure(bottomTextField,"BOTTOM",memeTextAttributes)
+        
     }
     @IBAction func imagePickerPressed(_ sender: Any) {
         present(imagePickerGenerator(.photoLibrary), animated: true, completion: nil)
@@ -47,6 +48,7 @@ class MemeEditorViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         subscribeToKeyboardNotifications()
+        self.tabBarController?.tabBar.isHidden = true
     }
     //MARK: AdjustingViewAccordingToKeyboard
     func subscribeToKeyboardNotifications()
@@ -73,6 +75,7 @@ class MemeEditorViewController: UIViewController {
         
         super.viewWillDisappear(animated)
         unsubscribeToKeyboardNotifications()
+        self.tabBarController?.tabBar.isHidden = false
     }
     func unsubscribeToKeyboardNotifications()
     {
@@ -104,16 +107,17 @@ class MemeEditorViewController: UIViewController {
             (_, successful, _, _) in
             if successful{
                 self.save(memedImage)
+                print("meme saved")
             }
         }
         self.present(controller, animated: true, completion: nil)
-
+        
     }
     @IBAction func cancelButtonPressed(_ sender: Any) {
         self.topTextField.text = "TOP"
         self.bottomTextField.text = "BOTTOM"
         self.imageView.image = nil
-
+        
     }
     func configure(_ textField : UITextField, _ text : String , _ attributes : [String:Any])
     {
@@ -136,7 +140,15 @@ class MemeEditorViewController: UIViewController {
         let appDelegate = objectDelegate as! AppDelegate
         appDelegate.memes.append(meme)
     }
+    func showAlert(_ msg:String)
+    {
+        let controller = UIAlertController.init(title: "Meme", message:msg , preferredStyle: .alert)
+        let action = UIAlertAction.init(title: "DIsmiss", style: .destructive, handler: nil)
+        controller.addAction(action)
+        present(controller, animated: true, completion: nil)
+    }
 }
+
 extension MemeEditorViewController:UIImagePickerControllerDelegate,UINavigationControllerDelegate
 {
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
