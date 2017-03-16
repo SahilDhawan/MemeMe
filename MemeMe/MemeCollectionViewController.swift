@@ -61,7 +61,7 @@ extension MemeCollectionViewController:UICollectionViewDataSource
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let memeCollectionCell = collectionView.dequeueReusableCell(withReuseIdentifier: "MemeCollectionCell", for: indexPath) as! MemeCollectionViewCell
         let meme = memes[indexPath.row]
-        memeCollectionCell.label.text = meme.topText + " " + meme.bottomText
+        memeCollectionCell.label.text = meme.topText + " - " + meme.bottomText
         memeCollectionCell.imageView.image = meme.memedImage
         memeCollectionCell.layer.borderColor = UIColor.black.cgColor
         memeCollectionCell.layer.borderWidth = 2.0

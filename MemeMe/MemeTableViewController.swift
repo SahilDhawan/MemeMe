@@ -29,12 +29,14 @@ class MemeTableViewController: UIViewController{
 }
 extension MemeTableViewController : UITableViewDataSource
 {
-    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let memeCell = tableView.dequeueReusableCell(withIdentifier: "memeTableCell")
         let meme = memes[indexPath.row]
+        memeCell?.textLabel?.text = meme.topText + " - " + meme.bottomText
+        memeCell?.imageView?.frame = CGRect(x: 0, y: 0, width: 150, height: 150)
         memeCell?.imageView?.image = meme.memedImage
-        memeCell?.textLabel?.text = meme.topText + " " + meme.bottomText
+        memeCell?.layer.borderColor = UIColor.black.cgColor
+        memeCell?.layer.borderWidth = 2.0
         return memeCell!
     }
     
@@ -49,5 +51,8 @@ extension MemeTableViewController : UITableViewDelegate
         let memeController = storyboard?.instantiateViewController(withIdentifier: "MemeEditor") as! MemeEditorViewController
         memeController.meme = meme
         self.navigationController?.pushViewController(memeController, animated: true)
+    }
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 150.0
     }
 }

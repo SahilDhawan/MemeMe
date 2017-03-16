@@ -29,7 +29,7 @@
             </objects>
             <point key="canvasLocation" x="-7" y="-147"/>
         </scene>
-        <!--Collection View-->
+        <!--Sent Memes-->
         <scene sceneID="2F6-3B-Uu4">
             <objects>
                 <viewController id="qQa-sc-Qdd" customClass="MemeCollectionViewController" customModule="MemeMe" customModuleProvider="target" sceneMemberID="viewController">
@@ -99,7 +99,7 @@
                             <constraint firstItem="t17-eX-Nbe" firstAttribute="leading" secondItem="AuH-Wn-96m" secondAttribute="leadingMargin" id="z5b-eh-6iy"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Collection View" id="yrf-hw-GEF">
+                    <navigationItem key="navigationItem" title="Sent Memes" id="yrf-hw-GEF">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="ZDR-SN-ewS">
                             <connections>
                                 <action selector="plusButtonPressed:" destination="qQa-sc-Qdd" id="aQ1-QP-GIl"/>
@@ -115,7 +115,7 @@
             </objects>
             <point key="canvasLocation" x="1928.8" y="406.14692653673166"/>
         </scene>
-        <!--Table View-->
+        <!--Sent Memes-->
         <scene sceneID="fmX-nq-mtN">
             <objects>
                 <viewController id="w03-cZ-6Bb" customClass="MemeTableViewController" customModule="MemeMe" customModuleProvider="target" sceneMemberID="viewController">
@@ -128,14 +128,14 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="dbQ-bD-iat">
-                                <rect key="frame" x="16" y="84" width="343" height="534"/>
+                                <rect key="frame" x="0.0" y="84" width="375" height="534"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="memeTableCell" id="qw8-mw-nDb">
-                                        <rect key="frame" x="0.0" y="28" width="343" height="44"/>
+                                        <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="qw8-mw-nDb" id="q0c-Sc-rSc">
-                                            <rect key="frame" x="0.0" y="0.0" width="343" height="44"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFit" tableViewCell="qw8-mw-nDb" id="q0c-Sc-rSc">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -149,12 +149,12 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="dbQ-bD-iat" firstAttribute="top" secondItem="OJd-Dj-L4g" secondAttribute="bottom" constant="20" id="8sr-Z4-pus"/>
-                            <constraint firstItem="dbQ-bD-iat" firstAttribute="trailing" secondItem="Wtb-sd-rWI" secondAttribute="trailingMargin" id="Xdh-Uw-Ltj"/>
-                            <constraint firstItem="dbQ-bD-iat" firstAttribute="leading" secondItem="Wtb-sd-rWI" secondAttribute="leadingMargin" id="bVB-1l-qa0"/>
+                            <constraint firstAttribute="trailing" secondItem="dbQ-bD-iat" secondAttribute="trailing" id="BMl-cL-wsJ"/>
+                            <constraint firstItem="dbQ-bD-iat" firstAttribute="leading" secondItem="Wtb-sd-rWI" secondAttribute="leading" id="S2N-Ek-hXg"/>
                             <constraint firstItem="ttg-f3-DSy" firstAttribute="top" secondItem="dbQ-bD-iat" secondAttribute="bottom" id="yLn-JN-RVb"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Table View" id="W6Z-bn-7VK">
+                    <navigationItem key="navigationItem" title="Sent Memes" id="W6Z-bn-7VK">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="0re-xy-v6b">
                             <connections>
                                 <action selector="plusButtonPressed:" destination="w03-cZ-6Bb" id="r9e-Ms-S4g"/>
