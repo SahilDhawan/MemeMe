@@ -15,16 +15,13 @@ class MemeEditorViewController: UIViewController {
     @IBOutlet weak var cameraButton: UIBarButtonItem!
     @IBOutlet weak var shareButton: UIBarButtonItem!
     @IBOutlet weak var toolbar: UIToolbar!
+    @IBOutlet weak var navigatonBar: UINavigationBar!
     
     var meme:Meme!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         shareButton.isEnabled = false
-        //delegate
-        topTextField.delegate = self
-        bottomTextField.delegate = self
-        //Specifying the height of status View
         
         //disabling camera button
         cameraButton.isEnabled = UIImagePickerController.isSourceTypeAvailable(.camera)
@@ -39,6 +36,7 @@ class MemeEditorViewController: UIViewController {
         configure(bottomTextField,"BOTTOM",memeTextAttributes)
         
     }
+    
     @IBAction func imagePickerPressed(_ sender: Any) {
         present(imagePickerGenerator(.photoLibrary), animated: true, completion: nil)
     }
@@ -46,9 +44,11 @@ class MemeEditorViewController: UIViewController {
     @IBAction func cameraButtonPressed(_ sender: Any) {
         present(imagePickerGenerator(.camera), animated: true, completion: nil)
     }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         subscribeToKeyboardNotifications()
+        self.navigationController?.navigationBar.isHidden = true
         self.tabBarController?.tabBar.isHidden = true
         if meme != nil
         {
@@ -83,6 +83,7 @@ class MemeEditorViewController: UIViewController {
         super.viewWillDisappear(animated)
         unsubscribeToKeyboardNotifications()
         self.tabBarController?.tabBar.isHidden = false
+        self.navigationController?.navigationBar.isHidden = false
     }
     func unsubscribeToKeyboardNotifications()
     {
@@ -98,12 +99,12 @@ class MemeEditorViewController: UIViewController {
     func generateMemedImage()->UIImage
     {
         
-        navigationController?.navigationBar.isHidden = true
+       self.navigatonBar.isHidden = true
         self.toolbar.isHidden = true
         UIGraphicsBeginImageContext(self.view.frame.size)
         view.drawHierarchy(in: self.view.frame, afterScreenUpdates: true)
         let memedImage : UIImage!  = UIGraphicsGetImageFromCurrentImageContext()
-        navigationController?.navigationBar.isHidden = false
+        self.navigatonBar.isHidden = false
         self.toolbar.isHidden = false
         return memedImage
     }
@@ -124,6 +125,10 @@ class MemeEditorViewController: UIViewController {
         self.topTextField.text = "TOP"
         self.bottomTextField.text = "BOTTOM"
         self.imageView.image = nil
+        _ = self.navigationController?.popToRootViewController(animated: true)
+        
+        //only works when view is loaded for the first time
+        performSegue(withIdentifier: "sentMemesSegue", sender: nil)
         
     }
     func configure(_ textField : UITextField, _ text : String , _ attributes : [String:Any])
@@ -131,6 +136,7 @@ class MemeEditorViewController: UIViewController {
         textField.text = text
         textField.defaultTextAttributes = attributes
         textField.textAlignment = .center
+        textField.delegate = self
     }
     func imagePickerGenerator(_ sourceType : UIImagePickerControllerSourceType)-> UIImagePickerController
     {

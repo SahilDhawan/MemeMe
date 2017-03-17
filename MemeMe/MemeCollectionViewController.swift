@@ -45,8 +45,8 @@ extension MemeCollectionViewController:UICollectionViewDelegate
 {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let meme = memes[indexPath.row]
-        let memeController = storyboard?.instantiateViewController(withIdentifier: "MemeEditor") as! MemeEditorViewController
-        memeController.meme = meme
+        let memeController = storyboard?.instantiateViewController(withIdentifier: "MemeDetail") as! MemeDetailViewController
+        memeController.memedImage = meme.memedImage
         self.navigationController?.pushViewController(memeController, animated: true)
     }
 }

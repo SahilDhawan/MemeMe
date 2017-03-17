@@ -12,7 +12,7 @@ import UIKit
 class MemeTableViewController: UIViewController{
     
     var memes = [Meme]()
-    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var tableView:UITableView!
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -25,7 +25,6 @@ class MemeTableViewController: UIViewController{
         let memeController = (storyboard?.instantiateViewController(withIdentifier: "MemeEditor"))! as UIViewController
         self.navigationController?.pushViewController(memeController, animated: true)
     }
-    
 }
 extension MemeTableViewController : UITableViewDataSource
 {
@@ -48,8 +47,8 @@ extension MemeTableViewController : UITableViewDelegate
 {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let meme = memes[indexPath.row]
-        let memeController = storyboard?.instantiateViewController(withIdentifier: "MemeEditor") as! MemeEditorViewController
-        memeController.meme = meme
+        let memeController = storyboard?.instantiateViewController(withIdentifier: "MemeDetail") as! MemeDetailViewController
+        memeController.memedImage = meme.memedImage
         self.navigationController?.pushViewController(memeController, animated: true)
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
