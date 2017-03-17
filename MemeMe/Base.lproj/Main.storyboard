@@ -7,7 +7,6 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
-        <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -154,7 +153,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="i0o-rc-0of" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2990" y="25"/>
+            <point key="canvasLocation" x="2233" y="32"/>
         </scene>
         <!--Sent Memes-->
         <scene sceneID="fmX-nq-mtN">
@@ -272,19 +271,17 @@
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <items>
                                     <navigationItem title="Meme Me Editor" id="u58-EK-Yf0">
-                                        <rightBarButtonItems>
-                                            <barButtonItem title="Cancel" id="5z5-w2-geu">
-                                                <connections>
-                                                    <action selector="cancelButtonPressed:" destination="BYZ-38-t0r" id="Jj8-Bw-cve"/>
-                                                    <segue destination="7g5-xb-M2c" kind="presentation" identifier="sentMemesSegue" id="73M-L1-MxT"/>
-                                                </connections>
-                                            </barButtonItem>
-                                            <barButtonItem systemItem="action" id="hvK-Xv-82I">
-                                                <connections>
-                                                    <action selector="shareButtonPressed:" destination="BYZ-38-t0r" id="3p7-tx-IiP"/>
-                                                </connections>
-                                            </barButtonItem>
-                                        </rightBarButtonItems>
+                                        <barButtonItem key="leftBarButtonItem" systemItem="action" id="hvK-Xv-82I">
+                                            <connections>
+                                                <action selector="shareButtonPressed:" destination="BYZ-38-t0r" id="3p7-tx-IiP"/>
+                                            </connections>
+                                        </barButtonItem>
+                                        <barButtonItem key="rightBarButtonItem" title="Cancel" id="5z5-w2-geu">
+                                            <connections>
+                                                <action selector="cancelButtonPressed:" destination="BYZ-38-t0r" id="Jj8-Bw-cve"/>
+                                                <segue destination="7g5-xb-M2c" kind="presentation" identifier="sentMemesSegue" id="73M-L1-MxT"/>
+                                            </connections>
+                                        </barButtonItem>
                                     </navigationItem>
                                 </items>
                             </navigationBar>
@@ -322,7 +319,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2287" y="35"/>
+            <point key="canvasLocation" x="1146" y="-1042"/>
         </scene>
         <!--Table View-->
         <scene sceneID="a50-qS-kLn">

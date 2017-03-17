@@ -20,17 +20,16 @@ class MemeCollectionViewController: UIViewController {
         memes = appDelegate.memes
         collectionView.reloadData()
     }
-    
-    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+    override func viewDidLoad() {
+        super.viewDidLoad()
         var dimension : CGFloat
-        super.viewWillTransition(to: size, with: coordinator)
         let space:CGFloat = 10.0
-        dimension = (collectionView.frame.width - space)/2
+        dimension = (collectionView.frame.width - 2*space)/3
         collectionFlowLayout.minimumLineSpacing = space
         collectionFlowLayout.minimumInteritemSpacing = space
         if (UIApplication.shared.statusBarOrientation == .landscapeLeft) || (UIApplication.shared.statusBarOrientation == .landscapeRight)
         {
-            dimension = (collectionView.frame.width-3*space)/4
+            dimension = (collectionView.frame.width-4*space)/5
         }
         collectionFlowLayout.itemSize = CGSize(width: dimension, height: dimension)
     }
