@@ -23,8 +23,7 @@ class MemeEditorViewController: UIViewController {
         super.viewDidLoad()
         shareButton.isEnabled = false
         
-        //disabling camera button
-        cameraButton.isEnabled = UIImagePickerController.isSourceTypeAvailable(.camera)
+        
         
         let memeTextAttributes : [String: Any] = [
             NSStrokeColorAttributeName : UIColor.black,
@@ -50,6 +49,10 @@ class MemeEditorViewController: UIViewController {
         subscribeToKeyboardNotifications()
         self.navigationController?.navigationBar.isHidden = true
         self.tabBarController?.tabBar.isHidden = true
+        
+        //disabling camera button
+        cameraButton.isEnabled = UIImagePickerController.isSourceTypeAvailable(.camera)
+        
         if meme != nil
         {
             imageView.image = meme.image
