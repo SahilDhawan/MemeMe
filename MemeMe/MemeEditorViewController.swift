@@ -125,9 +125,6 @@ class MemeEditorViewController: UIViewController {
         
     }
     @IBAction func cancelButtonPressed(_ sender: Any) {
-        self.topTextField.text = "TOP"
-        self.bottomTextField.text = "BOTTOM"
-        self.imageView.image = nil
         _ = self.navigationController?.popToRootViewController(animated: true)
         
         //only works when view is loaded for the first time
