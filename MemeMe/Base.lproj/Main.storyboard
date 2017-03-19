@@ -126,24 +126,15 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Fbq-os-HdU">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
-                                <items>
-                                    <navigationItem title="Meme Detail" id="faX-FB-8PM"/>
-                                </items>
-                            </navigationBar>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="GhO-kG-bO9">
-                                <rect key="frame" x="16" y="44" width="343" height="623"/>
+                                <rect key="frame" x="16" y="20" width="343" height="647"/>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="vXu-OD-6cJ" firstAttribute="top" secondItem="GhO-kG-bO9" secondAttribute="bottom" id="BjT-V4-qmd"/>
-                            <constraint firstItem="Fbq-os-HdU" firstAttribute="leading" secondItem="FSR-3s-QUm" secondAttribute="leading" id="NLy-aO-e8H"/>
-                            <constraint firstItem="GhO-kG-bO9" firstAttribute="top" secondItem="Fbq-os-HdU" secondAttribute="bottom" id="b9O-fV-LyO"/>
-                            <constraint firstAttribute="trailing" secondItem="Fbq-os-HdU" secondAttribute="trailing" id="c8b-ck-ffo"/>
                             <constraint firstItem="GhO-kG-bO9" firstAttribute="leading" secondItem="FSR-3s-QUm" secondAttribute="leadingMargin" id="g6T-fJ-Jnb"/>
-                            <constraint firstItem="Fbq-os-HdU" firstAttribute="top" secondItem="FSR-3s-QUm" secondAttribute="top" id="h9i-eU-UZS"/>
+                            <constraint firstItem="GhO-kG-bO9" firstAttribute="top" secondItem="BXU-0x-taf" secondAttribute="bottom" id="j2F-PV-YlE"/>
                             <constraint firstAttribute="trailingMargin" secondItem="GhO-kG-bO9" secondAttribute="trailing" id="ndL-Kg-EBA"/>
                         </constraints>
                     </view>
@@ -175,7 +166,7 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFit" tableViewCell="qw8-mw-nDb" id="q0c-Sc-rSc">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -278,7 +269,6 @@
                                         <barButtonItem key="rightBarButtonItem" title="Cancel" id="5z5-w2-geu">
                                             <connections>
                                                 <action selector="cancelButtonPressed:" destination="BYZ-38-t0r" id="Jj8-Bw-cve"/>
-                                                <segue destination="7g5-xb-M2c" kind="presentation" identifier="sentMemesSegue" id="73M-L1-MxT"/>
                                             </connections>
                                         </barButtonItem>
                                     </navigationItem>

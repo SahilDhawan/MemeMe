@@ -126,10 +126,6 @@ class MemeEditorViewController: UIViewController {
     }
     @IBAction func cancelButtonPressed(_ sender: Any) {
         _ = self.navigationController?.popToRootViewController(animated: true)
-        
-        //only works when view is loaded for the first time
-        performSegue(withIdentifier: "sentMemesSegue", sender: nil)
-        
     }
     func configure(_ textField : UITextField, _ text : String , _ attributes : [String:Any])
     {
